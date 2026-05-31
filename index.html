@@ -1,838 +1,99 @@
-<!DOCTYPE html>
-<html class="dark" lang="es">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Infibots | Automatización Inteligente para Hoteles, Clínicas y Empresas</title>
-<meta name="description" content="Reducción del 80% en trabajo manual con chatbots inteligentes, PMS hotelero y automatizaciones 24/7. Infibots transforma tu operación con IA."/>
-<meta name="keywords" content="automatización, chatbots, WhatsApp, PMS hoteles, inteligencia artificial, Colombia, Infibots"/>
-<meta name="author" content="Infibots"/>
-<meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://infibotslatam.com"/>
-<!-- Open Graph -->
-<meta property="og:title" content="Infibots | Automatización Inteligente"/>
-<meta property="og:description" content="Reducción del 80% en trabajo manual con chatbots inteligentes y automatizaciones 24/7."/>
-<meta property="og:url" content="https://infibotslatam.com"/>
-<meta property="og:type" content="website"/>
-<meta property="og:image" content="https://raw.githubusercontent.com/anacrisgarcia0813-arch/infibots-assets/main/logosinfondo.png"/>
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Infibots | Automatización Inteligente"/>
-<meta name="twitter:description" content="Reducción del 80% en trabajo manual con chatbots inteligentes y automatizaciones 24/7."/>
-<meta name="twitter:image" content="https://raw.githubusercontent.com/anacrisgarcia0813-arch/infibots-assets/main/logosinfondo.png"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<style>
-  :root {
-    --green: #39ff14;
-    --green-dim: #1adb00;
-    --green-glow: rgba(57,255,20,0.25);
-    --black: #000;
-    --surface: #0a0a0a;
-    --surface2: #111;
-    --surface3: #161616;
-    --border: rgba(57,255,20,0.12);
-    --text: #fff;
-    --muted: rgba(255,255,255,0.45);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--black);
-    color: var(--text);
-    overflow-x: hidden;
-  }
-
-  /* ── CANVAS PARTICLES ── */
-  #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.6; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 48px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-  nav.scrolled { padding: 12px 48px; background: rgba(0,0,0,0.9); }
-
-  .logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .logo-text {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: var(--green);
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 20px var(--green-glow);
-  }
-
-  .nav-links { display: flex; gap: 32px; align-items: center; }
-  .nav-links a {
-    color: var(--muted); font-size: 0.85rem; text-decoration: none;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    transition: color 0.2s;
-    font-weight: 500;
-  }
-  .nav-links a:hover, .nav-links a.active { color: var(--green); }
-
-  .btn-nav {
-    padding: 10px 24px;
-    background: var(--green);
-    color: #000;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none; cursor: pointer;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-    transition: all 0.2s;
-    font-family: 'Syne', sans-serif;
-  }
-  .btn-nav:hover { background: #fff; box-shadow: 0 0 30px var(--green-glow); transform: scale(1.05); }
-
-  /* ── HERO ── */
-  #hero {
-    position: relative; min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 160px 48px 80px;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(57,255,20,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57,255,20,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(57,255,20,0.08) 0%, transparent 70%);
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-    animation: breathe 6s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes breathe {
-    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
-    50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
-  }
-
-  .hero-content { position: relative; z-index: 2; max-width: 900px; }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--border);
-    padding: 6px 16px;
-    margin-bottom: 32px;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--green);
-    background: rgba(57,255,20,0.05);
-  }
-  .badge-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green);
-    animation: blink 1.5s ease-in-out infinite;
-    box-shadow: 0 0 8px var(--green);
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 28px;
-  }
-  .hero-title .accent { color: var(--green); position: relative; }
-  .hero-title .accent::after {
-    content: '';
-    position: absolute; left: 0; bottom: -4px;
-    width: 100%; height: 2px;
-    background: var(--green);
-    box-shadow: 0 0 12px var(--green);
-    animation: lineGrow 1.5s ease-out 1s both;
-  }
-  @keyframes lineGrow { from{width:0} to{width:100%} }
-
-  /* Typing cursor */
-  #typed-text { border-right: 3px solid var(--green); padding-right: 4px; }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 40px;
-  }
-  .hero-sub strong { color: var(--green); font-weight: 600; }
-
-  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
-
-  .btn-primary {
-    padding: 16px 36px;
-    background: var(--green);
-    color: #000;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: none; cursor: pointer;
-    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
-    transition: all 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .btn-primary::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-  }
-  .btn-primary:hover::before { transform: translateX(100%); }
-  .btn-primary:hover { box-shadow: 0 0 40px var(--green-glow); transform: translateY(-2px); }
-
-  .btn-secondary {
-    padding: 16px 36px;
-    background: transparent;
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.15); cursor: pointer;
-    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
-    transition: all 0.3s;
-  }
-  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
-
-  /* ── STATS ── */
-  #stats {
-    position: relative; z-index: 1;
-    padding: 80px 48px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-  }
-  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
-  .stat-card {
-    background: var(--surface);
-    padding: 48px 36px;
-    transition: background 0.3s;
-  }
-  .stat-card:hover { background: var(--surface2); }
-  .stat-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
-  .stat-number {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-  .stat-desc { font-size: 0.8rem; color: var(--muted); margin-top: 8px; }
-
-  /* ── SERVICES ── */
-  #services { position: relative; z-index: 1; padding: 120px 48px; }
-  .section-tag {
-    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--green); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-tag::before {
-    content: ''; display: block;
-    width: 32px; height: 1px; background: var(--green);
-  }
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 64px;
-  }
-
-  .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-
-  .card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    padding: 40px;
-    position: relative; overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
-    cursor: default;
-  }
-  .card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(57,255,20,0.05) 0%, transparent 60%);
-    opacity: 0; transition: opacity 0.4s;
-  }
-  .card:hover { border-color: rgba(57,255,20,0.35); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(57,255,20,0.08); }
-  .card:hover::before { opacity: 1; }
-
-  .card-icon {
-    width: 52px; height: 52px;
-    background: rgba(57,255,20,0.08);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 24px;
-    transition: all 0.3s;
-  }
-  .card:hover .card-icon { background: rgba(57,255,20,0.15); border-color: rgba(57,255,20,0.4); box-shadow: 0 0 20px rgba(57,255,20,0.15); }
-  .card-icon .material-symbols-outlined { color: var(--green); font-size: 26px; }
-
-  .card-tag {
-    position: absolute; top: 24px; right: 24px;
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 4px 10px;
-  }
-
-  .card h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
-  .card p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
-
-  .card-features { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
-  .card-feature {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 0.82rem; color: rgba(255,255,255,0.75);
-  }
-  .card-feature::before {
-    content: ''; width: 16px; height: 1px;
-    background: var(--green); flex-shrink: 0;
-  }
-
-  .card-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 28px;
-    color: var(--green);
-    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-    font-weight: 600;
-    text-decoration: none;
-    transition: gap 0.2s;
-  }
-  .card:hover .card-link { gap: 14px; }
-
-  /* Meter bar */
-  .meter-wrap { margin-top: 28px; }
-  .meter-label { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 8px; }
-  .meter-bar { height: 2px; background: var(--border); position: relative; overflow: hidden; }
-  .meter-fill {
-    position: absolute; top: 0; left: 0; height: 100%;
-    background: var(--green);
-    box-shadow: 0 0 8px var(--green);
-    width: 0; transition: width 1.5s ease-out;
-  }
-
-  /* ── VIDEO ── */
-  #video-section { position: relative; z-index: 1; padding: 80px 48px 120px; }
-  .video-wrap {
-    position: relative; max-width: 900px; margin: 0 auto;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: 0 0 80px rgba(57,255,20,0.06);
-  }
-  .video-wrap::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: var(--green);
-    box-shadow: 0 0 20px var(--green);
-    z-index: 2;
-  }
-  /* Scan line animation */
-  .video-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 45%, rgba(57,255,20,0.04) 50%, transparent 55%);
-    animation: scanline 5s linear infinite;
-    pointer-events: none; z-index: 3;
-  }
-  @keyframes scanline { 0%{transform:translateY(-100%)} 100%{transform:translateY(100%)} }
-
-  .video-ratio { position: relative; padding-bottom: 56.25%; }
-  .video-ratio iframe {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    border: none;
-  }
-
-  .video-hud {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 12px 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    display: flex; align-items: center; justify-content: space-between;
-    z-index: 4; pointer-events: none;
-  }
-  .hud-label { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--green); text-transform: uppercase; }
-  .hud-dots { display: flex; gap: 6px; }
-  .hud-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); animation: blink 1.5s ease-in-out infinite; }
-  .hud-dot:nth-child(2) { animation-delay: 0.3s; }
-  .hud-dot:nth-child(3) { animation-delay: 0.6s; }
-
-  /* ── MANIFESTO ── */
-  #manifesto { position: relative; z-index: 1; padding: 120px 48px; background: var(--surface); border-top: 1px solid var(--border); }
-  .manifesto-inner { max-width: 800px; }
-  .manifesto-quote {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 40px;
-  }
-  .manifesto-quote em { font-style: normal; color: var(--green); }
-
-  .manifesto-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-  .manifesto-body p { color: var(--muted); line-height: 1.75; font-size: 0.95rem; }
-
-  /* ── CTA ── */
-  #cta { position: relative; z-index: 1; padding: 120px 48px; overflow: hidden; }
-  .cta-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--green) 0%, #00c400 100%);
-  }
-  .cta-pattern {
-    position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(0,0,0,0.15) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-  .cta-inner { position: relative; z-index: 2; text-align: center; }
-  .cta-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 3.2rem);
-    font-weight: 800;
-    color: #000;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 40px;
-  }
-  .btn-cta {
-    padding: 20px 48px;
-    background: #000;
-    color: var(--green);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none; cursor: pointer;
-    clip-path: polygon(16px 0%, 100% 0%, calc(100% - 16px) 100%, 0% 100%);
-    transition: all 0.3s;
-  }
-  .btn-cta:hover { background: #111; transform: scale(1.05); box-shadow: 0 0 50px rgba(0,0,0,0.4); }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative; z-index: 1;
-    background: #000;
-    border-top: 1px solid var(--border);
-    padding: 48px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 24px;
-  }
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.2rem;
-    color: var(--green); letter-spacing: -0.01em;
-  }
-  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
-  .footer-links a { font-size: 0.75rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--green); }
-  .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); letter-spacing: 0.15em; text-transform: uppercase; width: 100%; text-align: center; margin-top: 16px; }
-
-  /* ── REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(50px); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .bento .card { grid-column: span 12 !important; }
-    .manifesto-body { grid-template-columns: 1fr; }
-    nav { padding: 16px 24px; }
-    #hero, #stats, #services, #video-section, #manifesto, #cta, footer { padding-left: 24px; padding-right: 24px; }
-  }
-  @media (max-width: 640px) {
-    .stats-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .hero-cta { flex-direction: column; }
-    .btn-primary, .btn-secondary { text-align: center; }
-  }
-</style>
-</head>
-<body>
-
-<canvas id="particles"></canvas>
-
-<!-- NAV -->
-<nav id="navbar">
-  <a class="logo-wrap" href="#">
-    <img src="https://raw.githubusercontent.com/anacrisgarcia0813-arch/infibots-assets/main/logosinfondo.png" alt="Infibots" height="48" style="width:auto; max-width:160px; object-fit:contain; filter: drop-shadow(0 0 6px rgba(57,255,20,0.35));">
-  </a>
-  <button class="btn-nav" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Contactar →</button>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      Sistema activo — Infibots v2.4
-    </div>
-    <h1 class="hero-title">
-      AUTOMATIZA<br>
-      LO QUE <span class="accent" id="typed-text">FRENA</span><br>
-      TU NEGOCIO
-    </h1>
-    <p class="hero-sub">
-      Reducción del <strong>80% en trabajo manual</strong> con chatbots inteligentes, PMS hotelero y automatizaciones que trabajan 24/7 por ti.
-    </p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Iniciar automatización</button>
-
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section id="stats">
-  <div class="stats-grid">
-    <div class="stat-card reveal">
-      <div class="stat-label">Eficiencia</div>
-      <div class="stat-number"><span class="counter" data-target="80">0</span>%</div>
-      <div class="stat-desc">Reducción en trabajo manual</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-label">Crecimiento</div>
-      <div class="stat-number">+<span class="counter" data-target="45">0</span>%</div>
-      <div class="stat-desc">Aumento en productividad</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-label">Disponibilidad</div>
-      <div class="stat-number">24/7</div>
-      <div class="stat-desc">Operación continua automatizada</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-label">Uptime</div>
-      <div class="stat-number">99.9%</div>
-      <div class="stat-desc">Confiabilidad del sistema</div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-tag">Capacidades core</div>
-  <h2 class="section-title reveal">SOLUCIONES<br>DE ALTO IMPACTO</h2>
-
-  <div class="bento">
-
-    <!-- WhatsApp — grande -->
-    <div class="card reveal" style="grid-column: span 7;">
-      <span class="card-tag">Chat Automation</span>
-      <div class="card-icon">
-        <span class="material-symbols-outlined">forum</span>
-      </div>
-      <h3>WhatsApp Automation</h3>
-      <p>Atención automatizada, gestión de citas y recordatorios inteligentes sincronizados con tu base de datos. Tu negocio responde en segundos, incluso a las 3am.</p>
-      <div class="card-features">
-        <div class="card-feature">Chatbots con IA conversacional</div>
-        <div class="card-feature">Notificaciones automáticas de citas</div>
-        <div class="card-feature">Integración con CRM propios</div>
-        <div class="card-feature">Flujos multipasos sin código</div>
-      </div>
-      <a class="card-link" href="#">Explorar solución <span>→</span></a>
-    </div>
-
-    <!-- PMS -->
-    <div class="card reveal" style="grid-column: span 5;">
-      <span class="card-tag">Hotel Tech</span>
-      <div class="card-icon">
-        <span class="material-symbols-outlined">hotel</span>
-      </div>
-      <h3>Custom PMS Hotelero</h3>
-      <p>Software exclusivo para hoteles. Motor de reservas, check-in digital y gestión de disponibilidad en tiempo real.</p>
-      <div class="meter-wrap">
-        <div class="meter-label"><span>Ocupación gestionada</span><span>94%</span></div>
-        <div class="meter-bar"><div class="meter-fill" style="--target:94%"></div></div>
-      </div>
-      <div class="meter-wrap">
-        <div class="meter-label"><span>Automatización de procesos</span><span>87%</span></div>
-        <div class="meter-bar"><div class="meter-fill" style="--target:87%"></div></div>
-      </div>
-      <a class="card-link" href="#">Explorar PMS <span>→</span></a>
-    </div>
-
-    <!-- Clinics -->
-    <div class="card reveal" style="grid-column: span 5;">
-      <span class="card-tag">Health Tech</span>
-      <div class="card-icon">
-        <span class="material-symbols-outlined">medical_services</span>
-      </div>
-      <h3>Clínicas & Salud</h3>
-      <p>Agenda sincronizada entre médicos y pacientes vía WhatsApp. Cero ausentismo, máximo rendimiento por consultorio.</p>
-      <div class="card-features">
-        <div class="card-feature">Recordatorios automáticos</div>
-        <div class="card-feature">Reagendamiento inteligente</div>
-      </div>
-      <a class="card-link" href="#">Explorar vertical <span>→</span></a>
-    </div>
-
-    <!-- Real Estate -->
-    <div class="card reveal" style="grid-column: span 7;">
-      <span class="card-tag">Prop Tech</span>
-      <div class="card-icon">
-        <span class="material-symbols-outlined">real_estate_agent</span>
-      </div>
-      <h3>Real Estate</h3>
-      <p>Gestión masiva de leads y agendamiento automático de visitas. Convierte prospectos en compradores sin intervención manual. Tu equipo de ventas se enfoca en cerrar, no en responder mensajes.</p>
-      <div class="card-features">
-        <div class="card-feature">Calificación automática de leads</div>
-        <div class="card-feature">Agendamiento de visitas 24/7</div>
-        <div class="card-feature">Seguimiento post-visita automatizado</div>
-      </div>
-      <a class="card-link" href="#">Explorar vertical <span>→</span></a>
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- MANIFESTO -->
-<section id="manifesto">
-  <div class="manifesto-inner">
-    <p class="manifesto-quote reveal">
-      NO HACEMOS MARKETING.<br>
-      <em>GESTIONAMOS RESULTADOS.</em>
-    </p>
-    <div class="manifesto-body reveal">
-      <p>Cada línea de código apunta a la rentabilidad. No se trata de "digitalizar", se trata de automatizar flujos que impactan directamente el bottom-line de tu empresa.</p>
-      <p>Información en tiempo real. Decisiones basadas en datos. Procesos que nunca duermen. Eso es Infibots.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-bg"></div>
-  <div class="cta-pattern"></div>
-  <div class="cta-inner">
-    <h2 class="cta-title reveal">ESCALA TU<br>OPERACIÓN<br>HOY MISMO</h2>
-    <button class="btn-cta reveal" onclick="window.open('https://wa.me/573188251944','_blank')">
-      Hablar con un estratega →
-    </button>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Infibots</div>
-  <div class="footer-links">
-    <a href="#">Política de privacidad</a>
-    <a href="#">Términos</a>
-    <a href="#">Seguridad</a>
-    <a href="#">Estado del sistema</a>
-  </div>
-  <div class="footer-copy">© 2025 Infibots — <a href="https://infibotslatam.com" style="color:var(--green);text-decoration:none;">infibotslatam.com</a> — Todos los derechos reservados</div>
-</footer>
-
-<script>
-// ── PARTICLES (cursor-interactive) ──
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [];
-const mouse = { x: -9999, y: -9999 };
-
-window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
-
-function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-class Particle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.ox = this.x; this.oy = this.y; // origin
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
-    this.alpha = Math.random() * 0.6 + 0.2;
-    this.r = Math.random() * 2.5 + 1.5; // bigger nodes
-  }
-  update() {
-    // cursor repulsion
-    const dx = this.x - mouse.x;
-    const dy = this.y - mouse.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const repelRadius = 120;
-    if (dist < repelRadius) {
-      const force = (repelRadius - dist) / repelRadius;
-      this.x += (dx / dist) * force * 5;
-      this.y += (dy / dist) * force * 5;
-    } else {
-      // drift back toward origin slowly
-      this.x += (this.ox - this.x) * 0.02 + this.vx;
-      this.y += (this.oy - this.y) * 0.02 + this.vy;
-    }
-    // update origin slowly
-    this.ox += this.vx * 0.3;
-    this.oy += this.vy * 0.3;
-    if (this.ox < 0 || this.ox > W) this.vx *= -1;
-    if (this.oy < 0 || this.oy > H) this.vy *= -1;
-  }
-  draw() {
-    // glow effect
-    const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 2.5);
-    grad.addColorStop(0, `rgba(57,255,20,${this.alpha})`);
-    grad.addColorStop(1, `rgba(57,255,20,0)`);
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r * 2.5, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.fill();
-    // solid core
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(57,255,20,${this.alpha})`;
-    ctx.fill();
-  }
-}
-
-for (let i = 0; i < 90; i++) particles.push(new Particle());
-
-function drawConnections() {
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      if (dist < 150) {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(57,255,20,${0.12 * (1 - dist/150)})`;
-        ctx.lineWidth = 0.8;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-  // draw connections to mouse
-  particles.forEach(p => {
-    const dx = p.x - mouse.x;
-    const dy = p.y - mouse.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 180) {
-      ctx.beginPath();
-      ctx.strokeStyle = `rgba(57,255,20,${0.3 * (1 - dist/180)})`;
-      ctx.lineWidth = 1;
-      ctx.moveTo(p.x, p.y);
-      ctx.lineTo(mouse.x, mouse.y);
-      ctx.stroke();
-    }
-  });
-}
-
-function animate() {
-  ctx.clearRect(0, 0, W, H);
-  particles.forEach(p => { p.update(); p.draw(); });
-  drawConnections();
-  requestAnimationFrame(animate);
-}
-animate();
-
-// ── TYPING EFFECT ──
-const words = ['FRENA', 'CUESTA', 'AGOTA', 'LIMITA'];
-let wi = 0, ci = 0, deleting = false;
-const el = document.getElementById('typed-text');
-
-function type() {
-  const word = words[wi];
-  if (!deleting) {
-    el.textContent = word.slice(0, ++ci);
-    if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
-  } else {
-    el.textContent = word.slice(0, --ci);
-    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
-  }
-  setTimeout(type, deleting ? 60 : 100);
-}
-type();
-
-// ── NAV SCROLL ──
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import OpenAI from "openai";
+import PptxGenJS from "pptxgenjs";
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-// ── GSAP REVEALS ──
-gsap.registerPlugin(ScrollTrigger);
+app.post("/generate", async (req, res) => {
+  const { topic } = req.body;
 
-gsap.utils.toArray('.reveal').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
-    opacity: 1, y: 0, duration: 1, ease: 'expo.out'
-  });
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4.1",
+      response_format: { type: "json_object" },
+      messages: [
+        {
+          role: "system",
+          content: `
+Eres un consultor estratégico senior.
+
+Tono:
+- Corporativo
+- Analítico
+- Profesional
+- Sin lenguaje comercial agresivo
+
+Genera presentaciones ejecutivas.
+          `
+        },
+        {
+          role: "user",
+          content: `
+Crea una presentación sobre: ${topic}
+
+Devuelve JSON con esta estructura:
+{
+ "slides":[
+   {
+     "title":"",
+     "content":"",
+     "notes":""
+   }
+ ]
+}
+
+Reglas:
+- Máximo 8 slides
+- Máximo 20 palabras por slide
+- Enfoque en estrategia, decisiones y sostenibilidad
+          `
+        }
+      ],
+    });
+
+    const data = JSON.parse(response.choices[0].message.content);
+
+    let pptx = new PptxGenJS();
+
+    data.slides.forEach(slide => {
+      let s = pptx.addSlide();
+
+      s.addText(slide.title, {
+        x: 0.5,
+        y: 0.5,
+        fontSize: 24,
+        bold: true,
+      });
+
+      s.addText(slide.content, {
+        x: 0.5,
+        y: 1.5,
+        fontSize: 16,
+      });
+    });
+
+    const fileName = `presentacion-${Date.now()}.pptx`;
+
+    await pptx.writeFile({ fileName });
+
+    res.download(fileName);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error generando presentación");
+  }
 });
 
-// ── COUNTER ANIMATION ──
-document.querySelectorAll('.counter').forEach(el => {
-  const target = +el.dataset.target;
-  ScrollTrigger.create({
-    trigger: el,
-    start: 'top 90%',
-    onEnter: () => {
-      let current = 0;
-      const step = target / 60;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.round(current);
-        if (current >= target) clearInterval(timer);
-      }, 30);
-    }
-  });
+app.listen(3000, () => {
+  console.log("Servidor en http://localhost:3000");
 });
-
-// ── METER BARS ──
-document.querySelectorAll('.meter-fill').forEach(bar => {
-  ScrollTrigger.create({
-    trigger: bar,
-    start: 'top 85%',
-    onEnter: () => {
-      const target = bar.style.getPropertyValue('--target');
-      bar.style.width = target;
-    }
-  });
-});
-
-// ── NAV ENTRANCE ──
-gsap.from('nav', { y: -80, opacity: 0, duration: 1.2, ease: 'expo.out' });
-gsap.from('.hero-badge', { opacity: 0, y: 20, duration: 1, delay: 0.3 });
-gsap.from('.hero-title', { opacity: 0, y: 60, duration: 1.2, delay: 0.5, ease: 'expo.out' });
-gsap.from('.hero-sub', { opacity: 0, y: 30, duration: 1, delay: 0.9 });
-gsap.from('.hero-cta', { opacity: 0, y: 20, duration: 0.8, delay: 1.2 });
-</script>
-</body>
-</html>
